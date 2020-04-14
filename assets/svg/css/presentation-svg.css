@@ -1,0 +1,451 @@
+/* This stylesheet contains styles that are applied to SVG elements inside   */
+/* the top level <svg> element. The styles of HTML elements outside SVG      */
+/* including the top-level <svg> itself, the tooltips, the HTML text input   */
+/* control that appears on top of SVG, and 3D canvas that also lies above    */
+/* are in a separate stylesheet animation-html.css                           */
+
+/* General-purpose styles --------------------------------------------------------------------------------------------*/
+
+svg text {
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.text-normal {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      11px;
+}
+
+.hidden-with-transition {
+    visibility:     hidden;
+    opacity:        0;
+    transition:     visibility 0.4s, opacity 0.4s;
+}
+
+.shown-with-transition {
+    visibility:     inherit;
+    opacity:        1;
+    transition:     visibility 0.4s, opacity 0.4s;
+}
+
+/* General shapes ----------------------------------------------------------------------------------------------------*/
+
+.shape-text {
+    white-space:    pre;
+    tab-size:       4;
+}
+
+/* Input controls (buttons, sliders, etc.) in SVG --------------------------------------------------------------------*/
+
+.control {
+    pointer-events: auto;
+}
+
+.control-opaque0 {
+    opacity:        0;
+    transition:     opacity 0.4s;
+    pointer-events: none;
+}
+
+.control-opaque1 {
+    opacity:        1;
+    transition:     opacity 0.4s;
+}
+
+.control-fill-transparent {
+    stroke:         none;
+    fill:           transparent;
+}
+
+.control-fill-transparent-transition {
+    stroke:         none;
+    fill:           transparent;
+    transition:     fill 0.4s;
+}
+
+.control-background {
+    stroke:         none;
+    fill:           lightgray;
+    transition:     fill 0.4s;
+}
+
+.control-background-disabled {
+    stroke:         none;
+    fill:           gainsboro;
+}
+
+.control-background-selected-disabled {
+    stroke:         none;
+    fill:           lightgray;
+}
+
+.control-fill-color {
+    stroke:         none;
+    fill:           #2b5799;
+}
+
+.control-fill-color-transition {
+    stroke:         none;
+    fill:           #2b5799;
+    transition:     fill 0.4s;
+}
+
+.control-fill-pressed {
+    stroke:         none;
+    fill:           white;
+}
+
+.control-text-selected-hover {
+    fill:           white;
+    transition:     fill 0.4s;
+}
+
+.control-text-disabled {
+    stroke:         none;
+    fill:           darkgray;
+}
+
+.control-border {
+    stroke-width:   1;
+    stroke:         dimgray;
+    fill:           none;
+    transition:     stroke 0.4s;
+}
+
+.control-border-hover {
+    stroke-width:   2;
+    stroke:         #2b5799;
+    fill:           none;
+    transition:     stroke 0.4s;
+}
+
+.control-border-disabled {
+    stroke-width:   1;
+    stroke:         darkgray;
+    fill:           none;
+}
+
+/* button */
+
+.control-button-background-pressed {
+    stroke-width:   1;
+    stroke:         white;
+    fill:           #2b5799;
+    transition:     fill 0.4s;
+}
+
+.control-button-text {
+    transition:     fill 0.4s;
+}
+
+/* checkbox */
+
+.control-checkbox-box {
+    fill:           white;
+    stroke-width:   2;
+    stroke:         dimgray;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-checkbox-box-hover {
+    stroke-width:   2;
+    stroke:         #2b5799;
+    fill:           lightsteelblue;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-checkbox-box-disabled {
+    stroke-width:   2;
+    stroke:         darkgray;
+    fill:           white;
+}
+
+.control-checkbox-check {
+    stroke-width:   2.5;
+    stroke:         dimgray;
+    transition:     stroke 0.4s;
+}
+
+.control-checkbox-check-hover {
+    stroke-width:   2.5;
+    stroke:         #2b5799;
+    transition:     stroke 0.4s;
+}
+
+.control-checkbox-check-pressed {
+    stroke-width:   2.5;
+    stroke:         white;
+}
+
+.control-checkbox-check-disabled {
+    stroke-width:   2.5;
+    stroke:         darkgray;
+    fill:           none;
+}
+
+/* slider */
+
+.control-slider-line-hover {
+    fill:           #b2b2b2;
+    transition:     fill 0.4s;
+}
+
+.control-slider-progress {
+    stroke:         none;
+    fill:           gray;
+    transition:     fill 0.4s;
+}
+
+.control-slider-handle {
+    stroke-width:   3;
+    stroke:         gray;
+    fill:           lightgray;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-slider-handle-hover {
+    stroke-width:   3;
+    stroke:         #2b5799;
+    fill:           lightsteelblue;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-slider-handle-pressed {
+    stroke-width:   3;
+    stroke:         #2b5799;
+    fill:           lightsteelblue;
+}
+
+.control-slider-handle-disabled {
+    stroke-width:   3;
+    stroke:         darkgray;
+    fill:           gainsboro;
+}
+
+.control-slider-value-text {
+    text-anchor:    end;
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      10px;
+    fill:           white;
+}
+
+/* radio button group */
+
+.control-radiobutton-circle {
+    stroke-width:   2;
+    stroke:         dimgray;
+    fill:           white;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-radiobutton-circle-hover {
+    stroke-width:   2;
+    stroke:         #2b5799;
+    fill:           lightsteelblue;
+    transition:     fill 0.4s, stroke 0.4s;
+}
+
+.control-radiobutton-circle-disabled {
+    stroke-width:   2;
+    stroke:         darkgray;
+    fill:           white;
+}
+
+.control-radiobutton-check {
+    stroke:         none;
+    fill:           dimgray;
+    transition:     fill 0.4s;
+}
+
+/* list */
+
+.control-list-background-hover-focus {
+    fill:           rgba(100,149,237,0.2);
+}
+
+.control-list-background-selected {
+    fill:           darkgray;
+    transition:     fill 0.4s;
+}
+
+.control-list-background-selected-hover {
+    fill:           royalblue;
+    transition:     fill 0.4s;
+}
+
+.control-list-background-selected-hover-focus {
+    fill:           cornflowerblue;
+}
+
+.control-list-scrollbar {
+    visibility:     inherit;
+    fill:           rgba(150, 200, 255, 0.6);
+}
+
+/* combobox */
+
+.control-combobox-arrow-background-hover {
+    fill:           rgba( 150, 200, 255, 0.6 );
+    transition:     fill 0.4s;
+}
+
+/* progressbar */
+
+@keyframes control-progressbar-indeterminate-rule {
+    0%              {fill: transparent;}
+    50%             {fill: gray;}
+    100%            {fill: transparent;}
+}
+
+.control-progressbar-indeterminate {
+    animation-name: control-progressbar-indeterminate-rule;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/* Charts (bar, pie, plot, histogram, etc.) --------------------------------------------------------------------------*/
+
+.legend-item {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      12px;
+}
+
+.legend-item-background {
+    stroke:         none;
+    fill:           transparent;
+    transition:     fill 0.4s;
+}
+
+.legend-item-background-selected {
+    stroke:         none;
+    fill:           rgba( 192, 192, 192, 0.4 );
+    transition:     fill 0.4s;
+}
+
+.legend-item-color {
+    stroke:         none;
+    transition:     fill 0.4s;
+}
+
+.grid-label-text {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      10px;
+}
+
+.chart-warning-text {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      11px;
+    fill:           firebrick;
+}
+
+.chart-bkg-selection {
+    fill:           rgba(212,212,212,0.4);
+}
+
+/* GIS ---------------------------------------------------------------------------------------------------------------*/
+
+.gis-tiles-copyright {
+    font-family:    Ubuntu, sans-serif;
+    font-size:      10px;
+    fill:           dimgray;
+}
+
+.gis-tiles-copyright:hover {
+    fill:           blue;
+    cursor:         pointer;
+}
+
+.shape-file {
+    stroke-width:   0.5;
+}
+
+.shape-file polyline {
+    fill:           none;
+}
+
+.shape-file circle {
+    r:              2;
+}
+
+/* Scale shape -------------------------------------------------------------------------------------------------------*/
+
+.shape-scale-text {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      8px;
+}
+
+/* Model primitives --------------------------------------------------------------------------------------------------*/
+
+.model-primitive {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      11px;
+    pointer-events: auto;
+}
+
+.model-primitive-info {
+    font-size:      10px;
+    fill:           mediumblue;
+}
+
+.model-primitive-info-warning {
+    font-size:      10px;
+    fill:           red;
+}
+
+@keyframes flow-backward {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: 16; }
+}
+
+.model-primitive-flow-forward {
+    animation: flow-backward 0.5s linear reverse infinite;
+}
+
+.model-primitive-flow-backward {
+    animation: flow-backward 0.5s linear infinite;
+}
+
+/* Clickable shapes and primitives -----------------------------------------------------------------------------------*/
+
+.clickable-over {
+    filter:         url(#filter-darker);
+    cursor:         pointer;
+}
+
+/* Inspect -----------------------------------------------------------------------------------------------------------*/
+
+.inspect-name-text {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      12px;
+    fill:           darkred;
+}
+
+.inspect-info-text {
+    font-family:    "Lucida Console", Monaco, monospace;
+    font-size:      10px;
+    fill:           maroon;
+    white-space:    pre;
+    tab-size:       8;
+    pointer-events: none;
+}
+
+.inspect-info-text-editable {
+    font-family:    "Lucida Console", Monaco, monospace;
+    font-size:      10px;
+    fill:           royalblue;
+    white-space:    pre;
+    tab-size:       8;
+}
+
+.inspect-info-text-editable:hover {
+    text-decoration: underline;
+    cursor:         pointer;
+}
+
+.inspect-grid-label-text {
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      8px;
+}

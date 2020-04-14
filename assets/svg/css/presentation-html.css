@@ -1,0 +1,794 @@
+/* This stylesheet contains styles that are applied to HTML elements around  */
+/* and on top of the SVG animation (control and dev panels, progress bar,    */
+/* tooltips for SVG elements, the HTML text input control that appears on    */
+/* top of SVG, and 3D canvas that also lies above. The styles of the SVG     */
+/* elements inside the top level <svg> element are in a separate stylesheet  */
+/* animation-svg.css                                                         */
+
+/* Global animation styles -------------------------------------------------------------------------------------------*/
+
+/* this element exists only in in-app and standalone runs, not in the cloud */
+#presentation-container {
+    position:       absolute;
+    width:          100%;
+    height:         100%;
+    overflow:       hidden;
+}
+
+#svg-and-dev-panel-container {
+    display:        flex;
+    height:         calc(100% - 50px); /* 100% - height of ( progress + control panel ) */
+    min-height:     calc(100px + 50px); /* min height of SVG + height of ( progress + control panel ) */
+    flex-direction: row;
+    flex-wrap:      nowrap;
+    background-color:   white;
+}
+
+#svg-container {
+    position:       relative;
+    flex-grow:      1;
+    min-width:      100px;
+    min-height:     100px;
+    overflow:       hidden;
+}
+
+.svg-container-standalone {
+    border-top:     1px solid silver;
+}
+
+#svg {
+    position:       absolute;
+    margin:         auto;
+    top:            0;
+    right:          0;
+    bottom:         0;
+    left:           0;
+    pointer-events: none;
+    background-color: white;
+}
+
+/* Background logo (animated) ----------------------------------------------------------------------------------------*/
+
+#svg-background-logo {
+    position:       absolute;
+    left:           calc(50% - 75px);
+    top:            calc(50% - 25px);
+    animation:      svg-background-logo-animation 5s infinite;
+}
+
+@keyframes svg-background-logo-animation {
+    0% { opacity: 0.1; }
+    50% { opacity: 1; }
+    100% { opacity: 0.1; }
+}
+
+/* HTML text input control for SVG -----------------------------------------------------------------------------------*/
+
+#text-input-for-svg-container {
+    position:       fixed;
+    top:            0;
+    left:           0;
+    width:          100vw;
+    height:         100vh;
+    background-color: rgba(0,0,0,0.05);
+}
+
+#text-input-for-svg-container input {
+    position:       fixed;
+    box-sizing:     border-box;
+    border:         1px solid #2b5799;
+    padding:        1px;
+    transform-origin: 0 0;
+}
+
+/* 3D canvas on top of SVG -------------------------------------------------------------------------------------------*/
+
+#canvas-group-3d {
+    margin:         auto;
+    position:       absolute;
+    top:            0;
+    right:          0;
+    bottom:         0;
+    left:           0;
+    overflow:       hidden;
+    pointer-events: none;
+}
+
+#canvas-group-3d canvas, .context-menu-3d {
+    position:       absolute;
+    pointer-events: all;
+}
+
+.context-menu-3d {
+    background-color: #eee;
+    border:         1px solid gray;
+    position:       fixed;
+    z-index:        10;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+    cursor:         default;
+    outline:        none;
+}
+
+.context-menu-3d-item {
+    padding:        5px;
+    display:        flex;
+    align-items:    center;
+    white-space:    nowrap;
+}
+
+.context-menu-3d-item:hover{
+    background-color: rgb(188, 208, 244);
+    /* background-color: rgb(144, 200, 246); */
+}
+
+/* Fading information line -------------------------------------------------------------------------------------------*/
+
+#svg-fading-info-line {
+    position:       absolute;
+    right:          0;
+    top:            0;
+    padding:        1px 5px;
+    background-color: gainsboro;
+    color:          black;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+    font-weight:    normal;
+    text-align:     left;
+    line-height:    normal;
+}
+
+.svg-fading-info-line-hidden {
+    visibility:         hidden;
+    opacity:            0;
+    transition:         all 0.8s;
+}
+
+.svg-fading-info-line-shown {
+    visibility:         visible;
+    opacity:            1;
+    transition:         all 0.2s;
+}
+
+/* Control panel -----------------------------------------------------------------------------------------------------*/
+
+#control-panel-progress {
+    position:       relative; /* for the bar */
+    height:         4px;
+}
+
+.control-panel-progress-inactive {
+    background-color: darkgray;
+}
+
+.control-panel-progress-inactive #control-panel-progress-bar {
+    display:        none;
+}
+
+.control-panel-progress-active {
+    background-color: darkgray;
+    transition:     background-color 0.3s;
+}
+
+.control-panel-progress-active:hover {
+    background-color: lightsteelblue;
+}
+
+#control-panel-progress-bar {
+    position:       absolute;
+    left:           0;
+    width:          0;
+    box-sizing:     border-box;
+    border-right:   3px solid white;
+    height:         100%;
+    background-color: #1164aa;
+    transition:     background-color 0.3s;
+}
+
+.control-panel-progress-active:hover #control-panel-progress-bar {
+    background-color: #0f3971;
+}
+
+#control-panel-progress-tooltip {
+    position:       absolute;
+    left:           calc( 100% + 3px );
+    top:            4px;
+    z-index:        1;
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      12px;
+    color:          steelblue;
+    white-space:    nowrap;
+}
+
+.control-panel-progress-active #control-panel-progress-tooltip {
+    visibility:     hidden;
+    opacity:        0;
+    transition:     opacity 0.3s;
+}
+
+.control-panel-progress-active:hover #control-panel-progress-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+#control-panel {
+    position:       relative;
+    height:         46px;
+    box-sizing:     border-box;
+    display:        flex;
+    flex-direction: row;
+    flex-wrap:      nowrap;
+    background-color: white;
+    font-family:    Ubuntu, sans-serif;
+    font-size:      13px;
+    font-weight:    600;
+    line-height:    normal;
+    color:          lightslategray;
+    cursor:         default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:    none;
+}
+
+.control-panel-item {
+    box-sizing:     border-box;
+    height:         46px;
+    padding:        8px;
+}
+
+.control-panel-control {
+    stroke:         lightslategray;
+    fill:           lightslategray;
+    color:          lightslategray;
+    transition-property:    stroke, fill, color, background-color;
+    transition-duration:    0.3s;
+}
+
+.control-panel-control-pressed {
+    background-color:  #e6e6e6;
+}
+
+.control-panel-control:hover {
+    stroke:         #4d5866;
+    fill:           #4d5866;
+    color:          #4d5866;
+    background-color:   gainsboro;
+}
+
+.control-panel-control-disabled {
+    position:       relative; /* for tooltips */
+    stroke:         darkgray;
+    fill:           darkgray;
+    color:          darkgray;
+}
+
+.control-panel-icon {
+    width:          30px;
+    height:         30px;
+    min-width:      30px;
+    pointer-events: none;
+}
+
+#control-panel-info-scale {
+    width:          60px;
+    min-width:      60px;
+    height:         20px;
+    margin:         13px;
+    padding:        0;
+    border-radius:  3px;
+    background-color: lightslategray;
+    color:          whitesmoke;
+    text-align:     center;
+    line-height:    20px;
+}
+
+#control-panel-anylogic {
+    position:       relative;
+}
+
+#control-panel-anylogic-popup {
+    position:       absolute;
+    right:          0;
+    bottom:         100%;
+    background-color: white;
+    border:         1px solid silver;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+    font-weight:    normal;
+}
+
+#control-panel-anylogic-popup .panel-text {
+    padding:        0 5px;
+}
+
+#control-panel-anylogic-popup div {
+    width:          100%;
+}
+
+#control-panel-anylogic #control-panel-anylogic-popup {
+    visibility:     hidden;
+    opacity:        0;
+    transition:     opacity 0.5s 0.2s;
+}
+
+#control-panel-anylogic:hover #control-panel-anylogic-popup {
+    visibility:     visible;
+    opacity:        1;
+}
+
+#control-panel-info-state {
+    height:         20px;
+    margin:         13px;
+    padding:        0;
+    text-align:     right;
+    line-height:    20px;
+}
+
+.control-panel-info-state-error {
+    color:          red;
+}
+
+.control-panel-info-state-error:hover {
+    color:          red;
+    text-decoration: underline;
+    cursor:         pointer;
+}
+
+.control-panel-console-new {
+    stroke:         dodgerblue;
+}
+
+/* Developer panel ---------------------------------------------------------------------------------------------------*/
+
+#dev-panel-border {
+    position:       relative;
+    display:        block;
+    width:          4px;
+    flex-shrink:    0;
+    background-color: darkgray;
+    transition:     background-color 0.3s;
+    cursor:         col-resize;
+}
+
+#svg-dev-panel {
+    position:       relative;
+    display:        flex;
+    flex-direction: row;
+    flex-wrap:      nowrap;
+}
+
+#dev-panel-border:hover {
+    background-color: dimgray;
+}
+
+#dev-panel-body {
+    display:        flex;
+    min-width:      300px;
+    flex-direction: column;
+    overflow:       auto;
+    background-color: white;
+    cursor:         default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:    none;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+    line-height:    normal;
+    color:          gray;
+}
+
+.dev-panel-row {
+    display:        flex;
+    flex-wrap:      wrap;
+    flex-shrink:    0;
+    border-top:     1px solid silver;
+}
+
+.dev-panel-section {
+    display:        inline-flex;
+    flex-wrap:      nowrap;
+}
+
+.dev-panel-item {
+    display:        inline-flex;
+    box-sizing:     border-box;
+    min-height:     30px;
+    padding:        5px;
+    flex-wrap:      nowrap;
+    align-items:    center;
+    white-space:    nowrap;
+}
+
+.dev-panel-text {
+    max-width:      260px;
+    overflow:       hidden;
+    padding-left:   3px;
+    text-overflow:  ellipsis;
+}
+
+.dev-panel-text-info {
+    color:          black;
+}
+
+.dev-panel-control {
+    position:       relative; /* for tooltips */
+    stroke:         dimgray;
+    fill:           dimgray;
+    color:          dimgray;
+    transition-property:    stroke, fill, color, background-color;
+    transition-duration:    0.3s;
+}
+
+.dev-panel-control-pressed {
+    background-color:  whitesmoke;
+}
+
+.dev-panel-control-selected {
+    stroke:         royalblue;
+    fill:           royalblue;
+    color:          royalblue;
+}
+
+.dev-panel-control:hover {
+    stroke:         black;
+    fill:           black;
+    color:          black;
+    background-color:   gainsboro;
+}
+
+.dev-panel-control-disabled {
+    position:       relative; /* for tooltips */
+    stroke:         darkgray;
+    fill:           darkgray;
+    color:          darkgray;
+}
+
+.dev-panel-control-link {
+    stroke:         royalblue;
+    fill:           royalblue;
+    color:          royalblue;
+    cursor:         pointer;
+}
+
+.dev-panel-control-link:hover {
+    text-decoration: underline;
+}
+
+.dev-panel-icon {
+    width:          20px;
+    height:         20px;
+    min-width:      20px;
+    pointer-events: none;
+}
+
+.dev-panel-icon-thin {
+    width:          10px;
+    height:         20px;
+    min-width:      10px;
+    pointer-events: none;
+}
+
+.dev-panel-grow-as-you-can {
+    flex-grow:      1;
+}
+
+.dev-panel-input-control {
+    height:         20px;
+    box-sizing:     border-box;
+    border:         0.5px solid silver;
+    padding:        0 1px;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+}
+
+.dev-panel-input-control:invalid {
+    background-color: mistyrose;
+}
+
+@keyframes dev-panel-running-animation {
+    0% { fill: green; }
+    50% { fill: limegreen; }
+    100% { fill: green; }
+}
+
+.dev-panel-state-indicator-running {
+    animation: dev-panel-running-animation 2s infinite;
+}
+
+#dev-panel-state-and-integer-time {
+    padding:        0;
+}
+
+#dev-panel-info-time-integer {
+    padding:        1px 0 0 0;
+    font-size:      16px;
+    font-weight:    600;
+}
+
+#dev-panel-info-time-fraction {
+    padding-left:   0;
+}
+
+#dev-panel-info-pause-at {
+    padding-left:   5px;
+    color:          red;
+}
+
+.dev-panel-console-row {
+    display:        flex;
+    flex-grow:      1;
+    box-sizing:     border-box;
+    min-height:     81px;
+    flex-direction: column;
+    flex-wrap:      nowrap;
+    border-top:     1px solid silver;
+    overflow:       hidden;
+}
+
+.dev-panel-row-tab-inactive {
+    border-bottom: 1px solid silver;
+}
+
+#dev-panel-console {
+    width:          100%;
+    flex-grow:      1;
+    box-sizing:     border-box;
+    min-height:     50px;
+    overflow:       auto;
+    padding:        5px;
+
+    font-family:    "Lucida Console", Monaco, monospace;
+    font-size:      11px;
+    color:          royalblue;
+    tab-size:       4;
+
+    cursor:         text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select:    text;
+}
+
+#dev-panel-console p {
+    margin:         0;
+    padding:        3px 0 0 10px;
+    text-indent:    -10px;
+}
+
+.dev-panel-console-notification {
+    background-color: navajowhite;
+    color:          crimson;
+}
+
+.dev-panel-events {
+    width:          100%;
+    flex-grow:      1;
+    box-sizing:     border-box;
+    min-height:     50px;
+    overflow:       auto;
+    padding:        5px;
+}
+
+.dev-panel-events table {
+    width:          100%;
+    border-collapse: collapse;
+    white-space:    nowrap;
+    text-align:     left;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:      12px;
+    stroke:         gray;
+    fill:           gray;
+}
+
+.dev-panel-events table tr:hover {
+    background-color: whitesmoke;
+}
+
+.dev-panel-events table th,td {
+    max-width:      0;
+    padding:        3px;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+}
+
+.dev-panel-events table th {
+    border-bottom:  1px solid gainsboro;
+    font-weight:    normal;
+}
+
+.dev-panel-events-table-number-column {
+    width:          10%;
+    text-align:     right;
+}
+
+.dev-panel-events-queue-table-name-column {
+    width:          72%;
+}
+
+.dev-panel-events-queue-table-time-column {
+    width:          18%;
+}
+
+.dev-panel-events-monitor-table-name-column {
+    width:          90%;
+}
+
+.dev-panel-events-queue-new-time {
+    border-top:     1px solid whitesmoke;
+}
+
+.dev-panel-events-queue-next {
+    color:          blue;
+    stroke:         blue;
+    fill:           blue;
+}
+
+.dev-panel-events-queue-system-pause {
+    border-bottom:  1px solid red;
+}
+
+.dev-panel-events-queue-system-name {
+    color:          lightgray;
+}
+
+.dev-panel-events-queue-system-pause-name {
+    color:          red;
+}
+
+.dev-panel-events-link:hover {
+    cursor:         pointer;
+    color:          royalblue;
+    text-decoration: underline;
+}
+
+.dev-panel-events-row-more {
+    border-top:     1px solid gainsboro;
+}
+
+.dev-panel-memory-back {
+    stroke:         gainsboro;
+}
+
+.dev-panel-memory-bar-normal {
+    stroke:         dodgerblue;
+}
+
+.dev-panel-memory-bar-critical {
+    stroke:         tomato;
+}
+
+/* Tooltip -----------------------------------------------------------------------------------------------------------*/
+
+#presentation-tooltip {
+    position:           fixed;
+    padding:            2px 7px;
+    border:             1px solid silver;
+    pointer-events:     none;
+    font-family:        "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:          12px;
+    line-height:        normal;
+}
+
+.presentation-tooltip-hidden {
+    visibility:         hidden;
+    opacity:            0;
+    transition:         opacity 0.3s 0.4s;
+}
+
+.presentation-tooltip-shown {
+    visibility:         visible;
+    opacity:            1;
+    transition:         opacity 0.3s 0.4s;
+}
+
+/* HTML message dialog box for SVG -----------------------------------------------------------------------------------*/
+
+#svg-message-background {
+    display:        flex;
+    position:       fixed;
+    left:           0;
+    top:            0;
+    right:          0;
+    bottom:         0;
+    background-color: rgba(0,0,0,0.2);
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items:    center;
+    cursor:         default;
+}
+
+#svg-message-box {
+    display:        flex;
+    flex-direction: column;
+    min-width:      200px;
+    max-width:      80%;
+    min-height:     120px;
+    max-height:     80%;
+    background-color: white;
+    border:         2px solid dimgray;
+    overflow:       hidden;
+    font-family:    "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-align:     left;
+    line-height:    normal;
+}
+
+#svg-message-box-header {
+    flex-shrink:    0;
+    display:        flex;
+    box-sizing:     border-box;
+    flex-direction: row;
+    flex-wrap:      nowrap;
+}
+
+.svg-message-box-icon {
+    box-sizing:     border-box;
+    width:          40px;
+    height:         40px;
+    flex-shrink:    0;
+    padding:        10px;
+}
+
+#svg-message-box-title {
+    box-sizing:     border-box;
+    flex-grow:      1;
+    padding:        11px 8px 0 0;
+    font-size:      14px;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+}
+
+.svg-message-box-colors-info {
+    stroke:         royalblue;
+    fill:           royalblue;
+    color:          royalblue;
+}
+
+.svg-message-box-colors-error {
+    stroke:         red;
+    fill:           red;
+    color:          red;
+}
+
+.svg-message-box-colors-wait {
+    stroke:         black;
+    fill:           black;
+    color:          black;
+}
+
+#svg-message-box-text {
+    overflow:       auto;
+    padding:        4px 26px 12px 40px;
+    font-size:      12px;
+}
+
+#svg-message-box-text h1 {
+    color:          royalblue;
+    font-size:      20px;
+    font-weight:    normal;
+}
+
+#svg-message-box-text h2 {
+    font-size:      16px;
+    font-weight:    normal;
+}
+
+.svg-message-box-link {
+    color:          royalblue;
+}
+
+.svg-message-box-link:hover {
+    text-decoration: underline;
+    cursor:         pointer;
+}
+
+#svg-message-box-progress {
+    box-sizing:     border-box;
+    width:          calc(100% - 24px);
+    height:         7px;
+    margin:         8px 12px 12px 12px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/

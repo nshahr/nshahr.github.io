@@ -1,4 +1,4 @@
-let cloudClient = CloudClient.create("e05a6efa-ea5f-4adf-b090-ae0ca7d16c20");
+let cloudClient = CloudClient.create("832d108c-36bb-447b-8c3b-5b183e74a3d1");
 
 let animation;
 let simulation;
@@ -6,7 +6,7 @@ let parameterVariation;
 let interval;
 let progressInterval;
 
-let modelName = "Bass Diffusion Demo 8.5.0";
+let modelName = "DO2BR_02_24_2020";
 
 function runAnimation() {
     cloudClient.getLatestModelVersion(modelName)

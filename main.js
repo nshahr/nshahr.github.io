@@ -1,4 +1,4 @@
-let cloudClient = CloudClient.create("832d108c-36bb-447b-8c3b-5b183e74a3d1");
+let cloudClient = CloudClient.create("832d108c-36bb-447b-8c3b-5b183e74a3d1", "https://anylogic.prod.onprem-adf.kp.org");
 
 let animation;
 let simulation;
